@@ -13,7 +13,12 @@ const initialAddress = {
   pincode: ''
 }
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3000').replace(/\/$/, '')
+
+const API_BASE_URL = (
+    import.meta.env.VITE_API_URL ||
+    'https://shopkart-czew.onrender.com'
+).replace(/\/$/, '');
+
 
 const formatPrice = (price) => new Intl.NumberFormat('en-IN', {
   style: 'currency',

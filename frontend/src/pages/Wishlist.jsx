@@ -15,11 +15,18 @@ function Wishlist() {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:3000/customers/logout', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { Accept: 'application/json' }
-      })
+     
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL ||
+  'https://shopkart-czew.onrender.com'
+).replace(/\/$/, '');
+
+await fetch(`${API_BASE_URL}/customers/logout`, {
+  method: 'POST',
+  credentials: 'include',
+  headers: { Accept: 'application/json' }
+});
+
       clearCart()
       navigate('/login')
     } catch (error) {

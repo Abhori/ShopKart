@@ -20,15 +20,25 @@ function Register() {
   setIsSubmitting(true)
 
   try {
-    const response = await axios.post(
-      'http://localhost:3000/customers/register',
-      {
-        fullName: fullName,
-        email: email,
-        password: password,
-        phone: phone
-      }
-    )
+    
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL ||
+  'https://shopkart-czew.onrender.com'
+).replace(/\/$/, '');
+
+const response = await axios.post(
+  `${API_BASE_URL}/customers/register`,
+  {
+    fullName: fullName,
+    email: email,
+    password: password,
+    phone: phone
+  },
+  {
+    withCredentials: true
+  }
+);
+
 
     console.log(response.data)
     navigate('/login')

@@ -12,13 +12,15 @@ function Home() {
 
     async function handleLogout() {
         try {
-            await axios.post(
-                'http://localhost:3000/customers/logout',
-                {},
-                {
-                    withCredentials: true 
-                }
-            )
+            
+await axios.post(
+    `${import.meta.env.VITE_API_URL || 'https://shopkart-czew.onrender.com'}/customers/logout`,
+    {},
+    {
+        withCredentials: true
+    }
+);
+
 
             clearCart()
             navigate('/login')
@@ -31,9 +33,14 @@ function Home() {
     useEffect(() => {
         let isActive = true
 
-        axios.get('http://localhost:3000/customers/me', {
-            withCredentials: true
-        })
+        
+axios.get(
+    `${import.meta.env.VITE_API_URL || 'https://shopkart-czew.onrender.com'}/customers/me`,
+    {
+        withCredentials: true
+    }
+)
+
             .then((response) => {
                 if (isActive) setUser(response.data)
             })

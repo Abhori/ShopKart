@@ -21,19 +21,31 @@ function ProductDetails() {
   const { cartItems, addToCart, pendingProductId, clearCart } = useCart()
   const navigate = useNavigate()
 
-  const handleLogout = async () => {
-    try {
-      await fetch('http://localhost:3000/customers/logout', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { Accept: 'application/json' }
-      })
-      clearCart()
-      navigate('/login')
-    } catch (error) {
-      setWishlistMessage(error.message || 'Unable to log out. Try again.')
+  
+const handleLogout = async () => {
+  try {
+    const API_BASE_URL = (
+      import.meta.env.VITE_API_URL ||
+      'https://shopkart-czew.onrender.com'
+    ).replace(/\/$/, '');
+
+    const response = await fetch(`${API_BASE_URL}/customers/logout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { Accept: 'application/json' }
+    });
+
+    if (!response.ok) {
+      throw new Error('Unable to log out. Try again.');
     }
+
+    clearCart();
+    navigate('/login');
+  } catch (error) {
+    setWishlistMessage(error.message || 'Unable to log out. Try again.');
   }
+};
+
 
   useEffect(() => {
     let isActive = true
