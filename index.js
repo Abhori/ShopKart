@@ -14,9 +14,13 @@ const orderRoutes = require("./routes/order.routes");
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        "https://shopkart.vercel.app"
+    ],
     credentials: true
 }));
+
 
 
 
