@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -13,10 +12,12 @@ const orderRoutes = require("./routes/order.routes");
 
 const app = express();
 
+const cors = require("cors");
+
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://shopkart.vercel.app"
+        "https://shop-kart-xi-three.vercel.app"
     ],
     credentials: true
 }));
