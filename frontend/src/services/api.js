@@ -1,4 +1,5 @@
-const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3000').replace(/\/$/, '')
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'https://shopkart-czew.onrender.com').replace(/\/$/, '')
+
 
 async function requestJson(url, options = {}) {
 	const response = await fetch(url, {

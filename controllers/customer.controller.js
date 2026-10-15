@@ -80,9 +80,12 @@ const loginCustomer = async (req, res) => {
     const token = generateToken(customer._id);
 
     res.cookie("token", token, {
-        httpOnly: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000
-    });
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    path: "/"
+});
 
     return res.status(200).json({
     success: true,
